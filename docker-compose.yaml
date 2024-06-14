@@ -11,5 +11,7 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - 3307:3306
+    command: --init-file /data/application/init.sql
     volumes:
       - .docker/mysql:/var/lib/mysql
+      - ./init.sql:/data/application/init.sql
