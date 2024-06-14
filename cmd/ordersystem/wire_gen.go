@@ -15,12 +15,22 @@ import (
 	"github.com/leoseiji/go-clean-architecture/internal/usecase"
 )
 
+import (
+	_ "github.com/go-sql-driver/mysql"
+)
+
 // Injectors from wire.go:
 
 func NewCreateOrderUseCase(db *sql.DB) *usecase.CreateOrderUseCase {
 	orderRepository := database.NewOrderRepository(db)
 	createOrderUseCase := usecase.NewCreateOrderUseCase(orderRepository)
 	return createOrderUseCase
+}
+
+func NewListOrderUseCase(db *sql.DB) *usecase.ListOrderUseCase {
+	orderRepository := database.NewOrderRepository(db)
+	listOrderUseCase := usecase.NewListOrderUseCase(orderRepository)
+	return listOrderUseCase
 }
 
 func NewWebOrderHandler(db *sql.DB) *web.WebOrderHandler {

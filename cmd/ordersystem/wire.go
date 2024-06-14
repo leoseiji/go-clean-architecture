@@ -26,6 +26,14 @@ func NewCreateOrderUseCase(db *sql.DB) *usecase.CreateOrderUseCase {
 	return &usecase.CreateOrderUseCase{}
 }
 
+func NewListOrderUseCase(db *sql.DB) *usecase.ListOrderUseCase {
+	wire.Build(
+		setOrderRepositoryDependency,
+		usecase.NewListOrderUseCase,
+	)
+	return &usecase.ListOrderUseCase{}
+}
+
 func NewWebOrderHandler(db *sql.DB) *web.WebOrderHandler {
 	wire.Build(
 		setOrderRepositoryDependency,
